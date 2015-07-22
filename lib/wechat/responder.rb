@@ -13,7 +13,7 @@ module Wechat
       attr_accessor :wechat, :token
 
       def on message_type, with: nil, respond: nil, &block
-        raise "Unknow message type" unless message_type.in? [:text, :image, :voice, :video, :location, :link, :event, :fallback]
+        raise "Unknow message type" unless message_type.in? [:text, :image, :voice, :video, :shortvideo,:location, :link, :event, :fallback]
         config=respond.nil? ? {} : {:respond=>respond}
         config.merge!(:proc=>block) if block_given?
 
