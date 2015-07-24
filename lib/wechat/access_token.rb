@@ -12,7 +12,7 @@ module Wechat
     def token
       begin
         @token_data ||= JSON.parse(File.read(token_file))
-      rescue AccessTokenExpiredError
+      rescue Wechat::AccessTokenExpiredError
         self.refresh
       end
       return valid_token(@token_data)
