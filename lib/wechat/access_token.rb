@@ -11,7 +11,7 @@ module Wechat
 
     def token
       begin
-        @token_data ||= JSON.parse(File.read(token_file))
+        @token_data ||= read_token
       rescue 
         self.refresh
       end
