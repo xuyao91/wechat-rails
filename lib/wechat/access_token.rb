@@ -20,7 +20,6 @@ module Wechat
 
     def refresh
       data = client.get("token", params:{grant_type: "client_credential", appid: appid, secret: secret})
-      puts "---------refresh token --------#{data}----------------"
       File.open(token_file, 'w'){|f| f.write(data.merge(expires_at: expired_at).to_json)} if valid_token(data)
       return @token_data = data
     end
@@ -28,7 +27,6 @@ module Wechat
     def read_token
       token_data = JSON.parse(file.read(token_file))
       return self.refresh if expire? token_data
-      puts "---------no need refresh token --------#{token_data}----------------"
       return token_data  
     end  
 
