@@ -12,8 +12,8 @@ module Wechat
     def token
       begin
         @token_data ||= read_token
-      rescue 
-        self.refresh
+       rescue 
+         self.refresh
       end
       return valid_token(@token_data)
     end
@@ -25,7 +25,7 @@ module Wechat
     end
 
     def read_token
-      token_data = JSON.parse(file.read(token_file))
+      token_data = JSON.parse(File.read(token_file))
       return self.refresh if expire? token_data
       return token_data  
     end  
@@ -42,7 +42,7 @@ module Wechat
     end  
 
     def expire? token_data
-      Time.now.to_i >= token_data["expired_at"].to_i
+      Time.now.to_i >= token_data["expires_at"].to_i
     end  
 
   end
