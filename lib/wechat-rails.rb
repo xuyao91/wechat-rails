@@ -1,4 +1,6 @@
 require "wechat/api"
+require 'wechat/js_sdk/base'
+require 'wechat/js_sdk/jsapi_ticket'
 
 module Wechat
   autoload :Message, "wechat/message"
