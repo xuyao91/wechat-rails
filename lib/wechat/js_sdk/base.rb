@@ -34,7 +34,7 @@ module Wechat::JsSdk
   	end	
 
   	def sign_params_by_dict_sort **params
-  	  params.sort.to_h.to_query
+  	  params.sort.map{|v| "#{v.first}=#{v.last}"}.join("&")
   	end	
 
   	def create_timestamp
